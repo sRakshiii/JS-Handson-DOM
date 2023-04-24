@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <center><u><p class="dom">DOM</p></u></center>
+    <h3>Q1. Write the code to access element which is having id as "text"</h3>
+    <p id="text">Sample Text</p>
+    <pre>const text = document.getElementById('text');</pre>
+    <hr>
+    <h3>Q2. Write the code to access element which is having tag as "h1"</h3>
+    <h1>Normal Text</h1>
+    <pre>const normal = document.getElementsByTagName('h1')[0];</pre>
+    <hr>
+    <h3>Q3. Write the code to access element which is having class as "box"</h3>
+    <p class="box">box item1</p>
+    <p class="box">box item2</p>
+    <pre>const item = document.getElementsByClassName('box')[1];</pre>
+    <hr>
+    <h3>Q4. Change the heading from "Hello" to "Hello World" using DOM functions</h3>
+    <h2>Hello</h2>
+    <pre>const sample = document.querySelector('h2');
+        sample.addEventListener("click", () => {
+            sample.innerText = "Hello World";
+        });</pre>
+
+
+    <hr>
+    <h3>Q5. Create an HTML page having content as Hello world and a button named Replace Text. When user will click on this button page content should be changed to "Welcome to Elevation academy"</h3>
+    <h3 id="change">Hello World</h3>
+    <button onclick="changeText()">Replace Text</button>
+    <pre>function changeText() {
+        const content = document.getElementById('change');
+        content.innerHTML = '"Welcome to Elevation academy"';
+    }</pre>
+    <hr>
+    <h3>Q6. 
+        Add one style attribute and give text color as red and id attribute and give the id value as "heading" in the above given h1 tag using DOM functions</h3>
+        <h1 id="heading">Hello</h1>
+        <pre>const head = document.getElementById('heading');
+            head.addEventListener("click", () => {
+                head.style.color = "red";
+            });</pre>
+    <hr>  
+    
+    <h3>Q7. Create three cards on HTML page and arrange them using flex property in row or horizontal direction and also create button at the bottom named "Change Flex direction". When user clicks on this button, the cards arrangement should be changed to vertical direction.</h3>
+
+    <div class="changeDirection">
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+        <div class="child"></div>
+    </div>
+
+    <pre>const changebox =document.getElementsByClassName("changeDirection")[0];
+        changebox.addEventListener("click", ()=>{
+            changebox.style.flexDirection = "column";
+        }); </pre>
+
+    <hr> 
+    
+    <h3>Q8. What’s the difference between window vs document?</h3>
+    
+    <table border="1px">
+        <tr>
+            <th>Document</th>
+            <th>Window</th>
+        </tr>
+        <tr>
+            <td>It represents the document loaded inside the window or browser.</td>
+            <td>It represents the browser window in which you are seeing the content</td>
+        </tr>
+        <tr>
+            <td>The properties related to it are stored in the document object.</td>
+            <td>The properties related to it are stored in the window object.</td>
+        </tr>
+        <tr>
+            <td>It is loaded after the loading window because the window contains a document.</td>
+            <td>It is loaded before the document because of the window container document.</td>
+        </tr>
+        <tr>
+            <td>It is the root element of the document object model.</td>
+            <td>The window is the global element for all objects, functions, etc.</td>
+        </tr>
+        <tr>
+            <td>It is an object of the window.</td>
+            <td>It is an object of the browser.</td>
+        </tr>
+        <tr>
+            <td>We can not access windows objects properties inside the document.</td>
+            <td>We can access document object properties inside the window.</td>
+        </tr>
+    </table>
+    <hr>
+    <h3>Q9. Write code to implement timer clock using JS -- display HH:MM:SS -- the time should keep updating every second</h3>
+
+    <h2 id="time"></h2>
+    <pre>code:
+        setInterval(myFunction, 1000); 
+        function myFunction() {
+       
+          var DateObj = new Date();
+          var hour = DateObj.getHours();
+          var minute = DateObj.getMinutes();
+          var seconds = DateObj.getSeconds();
+          
+          if (hour >= 12) {
+           hour = hour - 12;
+          }
+       
+         if (hour < 10) {
+           hour = "0" + hour;
+         }
+       
+         if (minute < 10) {
+           minute = "0" + minute;
+         }
+       
+         if (seconds < 10) {
+           seconds = "0" + seconds;
+         }
+       
+         document.getElementById("time").innerText = `${hour} : ${minute} :${seconds}`;
+         
+        }</pre><hr>
+
+    <h3>Q10. Guess the number Game</h3>
+
+    <a href="./index1.html" target="_blank">Click Here to see the Guess the number Game</a><br><br>
+    <pre>
+        let ramdomNumber = parseInt(Math.random() *100) + 1;
+        let chance = 100;
+        let highScore = 0;
+        console.log(ramdomNumber);
+        let chanceValue = document.getElementById('chance');
+        chanceValue.innerText = `Chances: ${chance}`;
+        let guess = document.getElementById('guess');
+        let inp = document.querySelectorAll('input');
+        let btn = document.getElementById('btn');
+        let ramdomNum = document.getElementById('ramdomNum'); 
+        let bd = document.getElementsByClassName("bd")[0];
+        let highScoreVal = document.getElementById('highScore');
+        highScoreVal.innerText = `Highscore : ${highScore}`;
+       
+       
+        btn.addEventListener('click', () =>{
+         if(ramdomNumber > parseInt(inp[0].value)){
+           guess.innerHTML = 'You are too Low!';
+           chanceValue.innerText = `Chances: ${chance--}`;
+         } else if(ramdomNumber < parseInt(inp[0].value)){
+           guess.innerHTML = 'You are too High!';
+           chanceValue.innerText = `Chances: ${chance--}`;
+         } else {
+           bd.style.backgroundColor = 'green';
+           ramdomNum.innerHTML = `${ramdomNumber}`;
+           guess.innerHTML = 'You are Right!';
+           chanceValue.innerText = `Chances: ${chance}`;
+           highScoreVal.innerText = `Highscore : ${highScore+chance}`;
+         } 
+         
+        });</pre>
+
+
+    <script src="./myscript.js"></script>
+</body>
+</html>
