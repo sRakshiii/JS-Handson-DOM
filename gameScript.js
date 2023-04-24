@@ -24,7 +24,7 @@ let ramdomNumber = parseInt(Math.random() *100) + 1;
   } else {
     bd.style.backgroundColor = 'green';
     ramdomNum.innerHTML = `${ramdomNumber}`;
-    guess.innerHTML = 'You are Right!';
+    guess.innerHTML = '🤩🤩 Hurray You Won 🤩🤩';
     chanceValue.innerText = `Chances: ${chance}`;
     highScoreVal.innerText = `Highscore : ${highScore+chance}`;
   } 
